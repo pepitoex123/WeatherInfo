@@ -1,0 +1,14 @@
+{
+  "name": "weatherinfo",
+  "version": "0.1.0",
+  "description": "Weather Info - Climate And Weather App ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cabrera Uriel",
+  "license": "ISC",
+  "dependencies": {
+    "captain-icons": "^0.2.0"
+  }
+}

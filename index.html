@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./node_modules/captain-icons/dist/captain-icons.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <meta name="author" content="Uriel Cabrera">
+    <link rel="shortcut icon" href="./media/weatherinfo.ico">
+    <title>WeatherInfo - Get To Know About The Weather</title>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="Logo"><img src="./media/weatherinfo.png" alt="Weather Info Logo" id="Logo__Image"></a>
+      <ul>
+        <li><a href="#">Temperature</a></li>
+        <li><a href="#">Air Quality</a></li>
+        <li><a href="#">Soil Quality</a></li>
+        <li><a href="#">Electrical Consumption</a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="app-title">
+        <p> WeatherInfo - Weather and Climate Information</p>
+        <input id="search" type="text" placeholder="Enter a location" autocomplete="off">
+        <div class="location-icon">
+          <i class="cap-icon ci-home"></i>
+        </div>
+      </div>
+      <div class="temperature">
+        <div class="temperature-title">
+          <p>Temperature Information</p>
+        </div>
+        <div class="notification">
+          <div class="weather-container">
+            <div class="weather-icon">
+              <i class='cap-icon ci-cloud-search'></i>
+            </div>
+          </div>
+        </div>
+        <div class="temperature-value">
+          <p> - * <span>C</span></p>
+        </div>
+        <div class="temperature-description">
+          <p>-</p>
+        </div>
+        <div class="temperature-location">
+          <p>-</p>
+        </div>
+      </div>
+      <div class="airquality">
+        <div class="airquality-title">
+          <p>Air Quality</p>
+        </div>
+        <div class="airquality-value">
+          <p>The location has a rating of <span></span></p>
+          <p>This is considered as <span></span> </p>
+        </div>
+        <div class="airquality-description">
+          <p>PM 2.5 Concentration: <span></span>  </p>
+          <p>PM 10 Concentration: <span></span>  </p>
+          <p>NO2 Concentration: <span></span> </p>
+          <p>CO Concentration:  <span></span> </p>
+          <p>SO2 Concentration: <span></span>  </p>
+          <p>Ozone Concentration: <span></span>  </p>
+          <p>For more information visit: <span></span> </p>
+        </div>
+      </div>
+      <div class="soilquality">
+        <div class="soilquality-title">
+          <p>Soil Quality</p>
+        </div>
+        <div class="soilquality-description">
+          <p>Soil Moisture: <span></span> </p>
+          <p>Soil Temperature: <span></span>  </p>
+        </div>
+      </div>
+    </div>
+    <script src="./app.js" charset="utf-8"></script>
+  </body>
+</html>

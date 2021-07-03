@@ -1,0 +1,314 @@
+
+*{
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-image: url("../media/background.png");
+  font-size: 62.5%;
+  background-color: steelblue;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.6s;
+  padding: 4rem 10rem;
+  background: #4DA0B0;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #D39D38, #4DA0B0);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #D39D38, #4DA0B0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header.sticky{
+  padding: 0.5rem 10rem;
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+}
+
+header .logo{
+  position: relative;
+  letter-spacing: 0.2rem;
+  transition: 0.6s;
+}
+
+#Logo__Image{
+  height: 5rem;
+}
+
+header ul{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header ul li{
+  position: relative;
+  list-style: none;
+}
+header ul li a{
+  position: relative;
+  margin: 0 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif !important;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 0.2rem;
+}
+header.sticky ul li a{
+  color: #000;
+}
+
+
+
+.container{
+  width: 50%;
+  background-color: white;
+  align-self: center;
+  display: block;
+  margin: 10rem auto;
+  border-radius: 1rem;
+  padding-bottom: 5rem;
+  box-shadow: 0.5rem 1rem 2rem black;
+}
+
+.app-title {
+  width: 100%;
+  height: 15rem;
+  border-radius: 1rem 1rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app-title p{
+  text-align: center;
+  padding: 1.5rem;
+  margin: 0 auto;
+  font-size: 2rem;
+  color: #333;
+}
+
+#search{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: 0.3rem solid steelblue;
+}
+
+.location-icon{
+  width: 100%;
+  height: 4rem;
+  padding: 1rem;
+}
+
+.location-icon i{
+  display: block;
+  width: 3rem;
+  margin: 1rem auto;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: steelblue solid 0.2rem;
+  border-radius: 1rem;
+  color: steelblue;
+  text-align: center;
+}
+
+
+.notification{
+  background-color: white;
+  display: block;
+}
+
+.notification p{
+  color: maroon;
+  font-size: 1.2rem;
+  margin: 0;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.weather-container{
+  width: 100%;
+  height: 5rem;
+  background-color: white;
+  margin-top: 2rem;
+
+}
+
+.weather-icon{
+  width: 100%;
+  height: 10rem;
+}
+
+.weather-icon i{
+  display: block;
+  margin: 0 auto;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+}
+.weather-icon img{
+  display: block;
+  margin: 0 auto;
+  width: 6rem;
+  height: 6rem;
+  text-align: center;
+}
+
+
+.temperature-title p,
+.airquality-title p,
+.soilquality-title p,
+.electricityquality-title p{
+  text-align: center;
+  padding: 2.5rem;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.temperature-value,
+.airquality-value,
+.soilquality-value,
+.electricityquality-value{
+  width: 100%;
+  height: 6rem;
+}
+
+
+
+.temperature-value p{
+  padding: 0;
+  margin: 0;
+  color: #293251;
+  font-size: 4rem;
+  text-align: center;
+}
+
+
+
+
+.temperature-value span,
+.airquality-value span,
+.soilquality-value span,
+.electricityquality-value span{
+  color: #293251;
+  font-size: 2rem;
+}
+
+.temperature-description p,
+.airquality-description p,
+.soilquality-description p,
+.electricityquality-description p{
+  padding: 0.8rem;
+  margin: 0;
+  color: #293251;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.electricityquality-description p{
+  padding-top: 12rem;
+}
+.airquality-value p,
+.soilquality-value p,
+.electricityquality-value p{
+  padding: 0;
+  margin: 0;
+  color: #293251;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.temperature-location p{
+  margin: 0;
+  padding: 0;
+  color: #293251;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 900px){
+  .airquality-value p,
+  .soilquality-value p,
+  .electricityquality-value p{
+    padding: 0;
+    margin: 0;
+    color: #293251;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .airquality-description p,
+  .soilquality-description p,
+  .electricityquality-description p{
+    padding: 0.8rem;
+    margin: 0;
+    color: #293251;
+    text-align: center;
+    font-size: 1rem;
+  }
+  .electricityquality-description p{
+    padding-top: 10rem;
+  }
+  #Logo__Image{
+    height: 3rem;
+  }
+  header ul li a{
+    position: relative;
+    margin: 0 1.1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+  }
+}
+
+
+@media(max-width: 750px){
+  header{
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .airquality-value p,
+  .soilquality-value p,
+  .electricityquality-value p{
+    padding: 0;
+    margin: 0;
+    color: #293251;
+    font-size: 1rem;
+    text-align: center;
+  }
+  .airquality-description p,
+  .soilquality-description p,
+  .electricityquality-description p{
+    padding: 0.8rem;
+    margin: 0;
+    color: #293251;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .electricityquality-description p{
+    padding-top: 10rem;
+  }
+}
