@@ -67,11 +67,17 @@ header ul li a{
   text-decoration: none;
   color: #fff;
   letter-spacing: 0.2rem;
+  transition: color 0.2s;
+}
+header ul li a:hover{
+  color: rgba(0, 240, 0,0.45);
 }
 header.sticky ul li a{
   color: #000;
 }
-
+header.sticky ul li a:hover{
+  color: rgba(159, 129, 112,0.9);
+}
 
 
 .container{
@@ -216,6 +222,10 @@ header.sticky ul li a{
   font-size: 2rem;
 }
 
+.airquality-description{
+  padding-top: 2rem;
+}
+
 .temperature-description p,
 .airquality-description p,
 .soilquality-description p,
@@ -279,6 +289,13 @@ header.sticky ul li a{
     font-size: 0.8rem;
     letter-spacing: 0.1rem;
   }
+
+  span{
+    font-size: 0.8rem;
+  }
+  p span{
+    font-size: 0.8rem !important;
+  }
 }
 
 
@@ -310,5 +327,11 @@ header.sticky ul li a{
   }
   .electricityquality-description p{
     padding-top: 10rem;
+  }
+  span{
+    font-size: 0.8rem;
+  }
+  p span{
+    font-size: 0.8rem !important;
   }
 }

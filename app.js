@@ -184,7 +184,17 @@ class Ciudad{
 */
 
 
-/* Utilizado para la animación de la navbar */
+/* Utilizado para la animación de la navbar así como también poder añadir una transición suave a la navegación de la página*/
+
+
+
+
+$("body").toTopButton({
+  imagePath: './media/icons',
+  arrowType: 'arrow',
+  iconColor: 'b',
+  iconShadow: 4
+});
 
 
 window.addEventListener("scroll", function(){
@@ -192,13 +202,27 @@ window.addEventListener("scroll", function(){
   header.classList.toggle("sticky", window.scrollY > 0)
 })
 
-/* This event listener needs to be added in order for the navbar animation to work :) */
+const links = document.querySelectorAll("header ul li a");
+
+for(const link of links){
+  link.addEventListener("click",clickHandler)
+}
+
+function clickHandler(e){
+  e.preventDefault();
+  const href = this.getAttribute("href");
+  const offsetTop = document.querySelector(href).offsetTop;
+
+  scrollTo({
+    top: offsetTop,
+    behavior: "smooth"
+  });
+}
 
 
 
 
-
-
+/* This event listener needs to be added in order for the navbar animation to work. I also established another algorithm in this section of the code to allow for a smoother transition */
 
 
 /* Elementos del DOM declarados como constantes*/
@@ -224,6 +248,12 @@ const soilQualityDescriptionTemperature = document.querySelector(".soilquality-d
 /* DOM Elements that were declared as constants */
 
 
+
+
+
+
+
+
 /* Variables y Objetos declarados */
 
 let input = document.getElementById("search");
@@ -243,6 +273,7 @@ const key = "5395a0670ef5d4697a6e596e4b480ca8";
 const key2 = "9d41a33a3d77f8cd86fe7c64415b4833b0f17485";
 const key3 = "5deed5536326565250bcf59ca8bcf2bbd2ee6b57f2c7c6fe5ecd23d8ab6e4ced";
 /* Valores constantes que son útiles :D */
+
 
 
 
@@ -400,43 +431,43 @@ function getAndDisplayAirQuality(key,city){
       airQualityDescriptionpm25Element.innerHTML = `<p>PM 2.5 Concentration: <span>${data.data.iaqi.pm25.v}</span></p>`;
     }
     else{
-      airQualityDescriptionpm25Element.innerHTML = `<p>PM 2.5 Concentration: <span>unknown</span></p>`;
+      airQualityDescriptionpm25Element.innerHTML = `<p>PM 2.5 Concentration: <span>N/A</span></p>`;
     }
     if(data.data.iaqi.pm10.v != undefined && data.data.iaqi.pm10.v > 0){
       airQualityDescriptionpm10Element.innerHTML = `<p>PM 1.0 Concentration: <span>${data.data.iaqi.pm10.v}</span></p>`;
     }
     else{
-      airQualityDescriptionpm10Element.innerHTML = `<p>PM 1.0 Concentration: <span>unknown</span></p>`;
+      airQualityDescriptionpm10Element.innerHTML = `<p>PM 1.0 Concentration: <span>N/A</span></p>`;
     }
     if(data.data.iaqi.no2.v != undefined && data.data.iaqi.no2.v > 0){
       airQualityDescriptionno2Element.innerHTML = `<p>NO2 Concentration: <span>${data.data.iaqi.no2.v}</span></p>`;
     }
     else{
-      airQualityDescriptionno2Element.innerHTML = `<p>NO2 Concentration: <span>unknown</span></p>`;
+      airQualityDescriptionno2Element.innerHTML = `<p>NO2 Concentration: <span>N/A</span></p>`;
     }
     if(data.data.iaqi.co.v != undefined && data.data.iaqi.co.v > 0){
       airQualityDescriptioncoElement.innerHTML = `<p>CO Concentration: <span>${data.data.iaqi.co.v}</span></p>`;
     }
     else{
-      airQualityDescriptioncoElement.innerHTML = `<p>CO Concentration: <span>unknown</span></p>`;
+      airQualityDescriptioncoElement.innerHTML = `<p>CO Concentration: <span>N/A</span></p>`;
     }
     if(data.data.iaqi.so2.v != undefined && data.data.iaqi.so2.v > 0){
       airQualityDescriptionso2Element.innerHTML = `<p>SO2 Concentration: <span>${data.data.iaqi.so2.v}</span></p>`;
     }
     else{
-      airQualityDescriptionso2Element.innerHTML = `<p>SO2 Concentration: <span>unknown</span></p>`;
+      airQualityDescriptionso2Element.innerHTML = `<p>SO2 Concentration: <span>N/A</span></p>`;
     }
     if(data.data.iaqi.o3.v != undefined && data.data.iaqi.o3.v > 0){
       airQualityDescriptiono3Element.innerHTML = `<p>Ozone Concentration: <span>${data.data.iaqi.o3.v}</span></p>`;
     }
     else{
-      airQualityDescriptiono3Element.innerHTML = `<p>Ozone Concentration: <span>unknown</span></p>`;
+      airQualityDescriptiono3Element.innerHTML = `<p>Ozone Concentration: <span>N/A</span></p>`;
     }
     if(data.data.city.url != undefined){
       airQualityDescriptionMoreInfoElement.innerHTML = `<p>For more information visit: <span>${data.data.city.url}</span> </p>`;
     }
     else{
-      airQualityDescriptionMoreInfoElement.innerHTML = `<p>There's sadly not more information for this city</p>`;
+      airQualityDescriptionMoreInfoElement.innerHTML = `<p>N/A</p>`;
     }
     if(isLocalCitySaved === false){
       currentCity.setCalidadDeAire(data.data.aqi);
@@ -464,32 +495,69 @@ function getAndDisplayAirQuality(key,city){
 }
 
 function getAndDisplaySoilQuality(key,lat,long){
-  const options = {
-	   "method": "GET",
-	   "hostname": "api.ambeedata.com",
-	   "port": null,
-	   "path": `/soil/latest/by-lat-lng?lat=${lat}&lng=${long}`,
-	   "headers":{
-		     "x-api-key": key,
-		     "Content-type": "application/json"
-	      }
-  };
-
-  fetch(options)
-  .then(function(response){
-    let data = response.json();
-    return data;
-  })
-  .then(function(data){
-    soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>${data.data.soil_moisture}</span></p>`;
-    soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>${data.data.soil_temperature}</span></p>`;
-    if(isLocalCitySaved === false){
-      currentCity.setSoilMoisture(data.data.soil_moisture);
-      currentCity.setSoilTemperature(data.data.soil_temperature);
+  let isDone = false;
+  $.ajax({
+    url: `https://api.ambeedata.com/soil/latest/by-lat-lng?lat=${lat}&lng=${long}`,
+    data:{
+        "x-api-key": key,
+        "content-type": "application/json"
+    },
+    type: "get",
+    dataType: "json",
+    success: function(response){
+      let data = response.json();
+      soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>${data.data.soil_moisture}</span></p>`;
+      soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>${data.data.soil_temperature}</span></p>`;
+      if(isLocalCitySaved === false){
+        currentCity.setSoilMoisture(data.data.soil_moisture);
+        currentCity.setSoilTemperature(data.data.soil_temperature);
+      }
+      else{
+        currentCity.setSoilMoisture(data.data.soil_moisture);
+        currentCity.setSoilTemperature(data.data.soil_temperature);
+      }
+      isDone = true;
+    },
+    error: function(xhr){
+      console.log(xhr);
     }
-    else{
-      currentCity.setSoilMoisture(data.data.soil_moisture);
-      currentCity.setSoilTemperature(data.data.soil_temperature);
-    }
   })
+  if(isDone === false){
+    fetch(`https://api.ambeedata.com/soil/latest/by-lat-lng?lat=${lat}&lng=${long}`,{
+      method: "get",
+      headers: {
+        "x-api-key": key,
+        "content-type": "application/json"
+      }
+    })
+    .then( (response) => {
+      let data = response.json();
+      return data;
+    })
+    .then( (data) => {
+      let soilMoisture = data.data.soil_moisture;
+      let soilTemperature = data.data.soil_temperature;
+      if(soilMoisture === undefined){
+        soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>N/A</span></p>`;
+      }
+      else{
+        soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>${data.data.soil_moisture}</span></p>`;
+      }
+      if(soilTemperature === undefined){
+        soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>N/A</span></p>`;
+      }
+      else{
+        soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>${data.data.soil_temperature}</span></p>`;
+      }
+      if(isLocalCitySaved === false){
+        currentCity.setSoilMoisture(data.data.soil_moisture);
+        currentCity.setSoilTemperature(data.data.soil_temperature);
+      }
+      else{
+        currentCity.setSoilMoisture(data.data.soil_moisture);
+        currentCity.setSoilTemperature(data.data.soil_temperature);
+      }
+      isDone = true;
+    })
+  }
 }

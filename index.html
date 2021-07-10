@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/floating-totop-button.min.css">
     <link rel="stylesheet" href="./node_modules/captain-icons/dist/captain-icons.css">
     <link rel="stylesheet" href="./css/app.css">
     <meta name="author" content="Uriel Cabrera">
@@ -14,14 +15,16 @@
   </head>
   <body>
     <header>
-      <a href="#" class="Logo"><img src="./media/weatherinfo.png" alt="Weather Info Logo" id="Logo__Image"></a>
+      <a  class="Logo"><img src="./media/weatherinfo.png" alt="Weather Info Logo" id="Logo__Image"></a>
       <ul>
-        <li><a href="#">Temperature</a></li>
-        <li><a href="#">Air Quality</a></li>
-        <li><a href="#">Soil Quality</a></li>
-        <li><a href="#">Electrical Consumption</a></li>
+        <li><a href="#temperature">Temperature</a></li>
+        <li><a href="#airquality">Air Quality</a></li>
+        <li><a href="#soilquality">Soil Quality</a></li>
       </ul>
     </header>
+    <div class="musicPlayer">
+      
+    </div>
     <div class="container">
       <div class="app-title">
         <p> WeatherInfo - Weather and Climate Information</p>
@@ -30,7 +33,7 @@
           <i class="cap-icon ci-home"></i>
         </div>
       </div>
-      <div class="temperature">
+      <div class="temperature" id="temperature">
         <div class="temperature-title">
           <p>Temperature Information</p>
         </div>
@@ -51,7 +54,7 @@
           <p>-</p>
         </div>
       </div>
-      <div class="airquality">
+      <div class="airquality" id="airquality">
         <div class="airquality-title">
           <p>Air Quality</p>
         </div>
@@ -69,7 +72,7 @@
           <p>For more information visit: <span></span> </p>
         </div>
       </div>
-      <div class="soilquality">
+      <div class="soilquality" id="soilquality">
         <div class="soilquality-title">
           <p>Soil Quality</p>
         </div>
@@ -79,6 +82,8 @@
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./js/floating-totop-button.min.js" charset="utf-8"></script>
     <script src="./app.js" charset="utf-8"></script>
   </body>
 </html>
