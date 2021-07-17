@@ -271,7 +271,7 @@ let currentCity = new Ciudad("","",0,0,0,0,0,0,0,0,0,0,0,0);
 const kelvin = 273;
 const key = "5395a0670ef5d4697a6e596e4b480ca8";
 const key2 = "9d41a33a3d77f8cd86fe7c64415b4833b0f17485";
-const key3 = "5deed5536326565250bcf59ca8bcf2bbd2ee6b57f2c7c6fe5ecd23d8ab6e4ced";
+const key3 = "9ad54a6b4c0efb0a359bb87867f51ab8";
 /* Valores constantes que son útiles :D */
 
 
@@ -497,65 +497,64 @@ function getAndDisplayAirQuality(key,city){
 function getAndDisplaySoilQuality(key,lat,long){
   let isDone = false;
   $.ajax({
-    url: `https://api.ambeedata.com/soil/latest/by-lat-lng?lat=${lat}&lng=${long}`,
-    data:{
-        "x-api-key": key,
-        "content-type": "application/json"
-    },
-    type: "get",
-    dataType: "json",
-    success: function(response){
+    type: "GET",
+    url: `https://api.agromonitoring.com/agro/1.0/weather?lat=${lat}&lon=${long}&appid=${key}`,
+    success: function(response) {
       let data = response.json();
-      soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>${data.data.soil_moisture}</span></p>`;
-      soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>${data.data.soil_temperature}</span></p>`;
-      if(isLocalCitySaved === false){
-        currentCity.setSoilMoisture(data.data.soil_moisture);
-        currentCity.setSoilTemperature(data.data.soil_temperature);
-      }
-      else{
-        currentCity.setSoilMoisture(data.data.soil_moisture);
-        currentCity.setSoilTemperature(data.data.soil_temperature);
-      }
-      isDone = true;
-    },
-    error: function(xhr){
-      console.log(xhr);
-    }
-  })
-  if(isDone === false){
-    fetch(`https://api.ambeedata.com/soil/latest/by-lat-lng?lat=${lat}&lng=${long}`,{
-      method: "get",
-      headers: {
-        "x-api-key": key,
-        "content-type": "application/json"
-      }
-    })
-    .then( (response) => {
-      let data = response.json();
-      return data;
-    })
-    .then( (data) => {
-      let soilMoisture = data.data.soil_moisture;
-      let soilTemperature = data.data.soil_temperature;
+      let soilMoisture = data.main.humidity;
+      let soilTemperature = data.main.temp_min;
       if(soilMoisture === undefined){
         soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>N/A</span></p>`;
       }
       else{
-        soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>${data.data.soil_moisture}</span></p>`;
+        soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>${data.main.humidity}</span></p>`;
       }
       if(soilTemperature === undefined){
         soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>N/A</span></p>`;
       }
       else{
-        soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>${data.data.soil_temperature}</span></p>`;
+        soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>${data.main.temp_min}</span></p>`;
       }
       if(isLocalCitySaved === false){
-        currentCity.setSoilMoisture(data.data.soil_moisture);
-        currentCity.setSoilTemperature(data.data.soil_temperature);
+        currentCity.setSoilMoisture(data.main.humidity);
+        currentCity.setSoilTemperature(data.main.temp_min);
       }
       else{
-        currentCity.setSoilMoisture(data.data.soil_moisture);
-        currentCity.setSoilTemperature(data.data.soil_temperature);
+        currentCity.setSoilMoisture(data.main.humidity);
+        currentCity.setSoilTemperature(data.main.temp_min);
+      }
+      isDone = true;
+    },
+    dataType: "json"
+  })
+  if(isDone === false){
+    fetch(`https://api.agromonitoring.com/agro/1.0/weather?lat=${lat}&lon=${long}&appid=${key}`)
+    .then( (response) => {
+      let data = response.json();
+      return data;
+    })
+    .then( (data) => {
+      let soilMoisture = data.main.humidity;
+      let soilTemperature = data.main.temp_min;
+      if(soilMoisture === undefined){
+        soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>N/A</span></p>`;
+      }
+      else{
+        soilQualityDescriptionMoisture.innerHTML = `<p>Soil Moisture: <span>${data.main.humidity}</span></p>`;
+      }
+      if(soilTemperature === undefined){
+        soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>N/A</span></p>`;
+      }
+      else{
+        soilQualityDescriptionTemperature.innerHTML = `<p>Soil Temperature: <span>${data.main.temp_min}</span></p>`;
+      }
+      if(isLocalCitySaved === false){
+        currentCity.setSoilMoisture(data.main.humidity);
+        currentCity.setSoilTemperature(data.main.temp_min);
+      }
+      else{
+        currentCity.setSoilMoisture(data.main.humidity);
+        currentCity.setSoilTemperature(data.main.temp_min);
       }
       isDone = true;
     })
